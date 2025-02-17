@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Sederhana firdaus</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-image: url('wal4.jpg');
+        background-position: center; background-size: cover;
+        background-size: contain;
+        }
+
+        .calculator {
+        background-color: rgb(255, 252, 250);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #display {
+        width: 95%;
+        padding: 10px;
+        font-size: 28px;
+        text-align: right;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        }
+
+        .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        }
+
+        .btn {
+        padding: 20px;
+        font-size: 18px;
+        background-color: #f3f0f0;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+        background-color: #8d8d8d;
+        }
+
+        .operator {
+        background-color: #ff9f00;
+        color: white;
+        }
+
+        .operator:hover {
+        background-color: #e68900;
+        }
+
+        button:active {
+        background-color: #ccc;
+        }
+            
+        .btn.backspace {
+        background: #ff3b30;
+        color: white;
+        }
+            
+        .btn.backspace:hover {
+        background: #d32f2f;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button class="btn" onclick="appendNumber('7')">7</button>
+            <button class="btn" onclick="appendNumber('8')">8</button>
+            <button class="btn" onclick="appendNumber('9')">9</button>
+            <button class="btn operator" onclick="appendOperator('+')">+</button>
+        
+            <button class="btn" onclick="appendNumber('4')">4</button>
+            <button class="btn" onclick="appendNumber('5')">5</button>
+            <button class="btn" onclick="appendNumber('6')">6</button>
+            <button class="btn operator" onclick="appendOperator('-')">-</button>
+        
+            <button class="btn" onclick="appendNumber('1')">1</button>
+            <button class="btn" onclick="appendNumber('2')">2</button>
+            <button class="btn" onclick="appendNumber('3')">3</button>
+            <button class="btn operator" onclick="appendOperator('*')">*</button>
+        
+            <button class="btn" onclick="appendNumber('0')">0</button>
+            <button class="btn" onclick="clearDisplay()">C</button>
+            <button class="btn" onclick="calculateResult()">=</button>
+            <button class="btn operator" onclick="appendOperator('/')">/</button>
+        
+            <button class="btn" onclick="backspace()">⌫</button>
+        </div>        
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+        
+
+        function appendNumber(number) {
+            display.value += number;
+        }
+
+        function appendOperator(operator) {
+            display.value += ' ' + operator + ' ';
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function calculateResult() {
+            let input = display.value.split(' ');
+            // mengacu pada elemen input dengan id display
+            // split digunakan untuk memecah string berdasarkan spasi
+            if (input.length !== 3)
+            // jika input tidak memiliki 3 elemen
+            {
+                display.value = 'Error';
+                return;
+            }
+
+            let num1 = parseFloat(input[0]);
+            //mengubah elemen pertama menjadi angka (num1)
+            let operator = input[1];
+            //menyimpan operator
+            let num2 = parseFloat(input[2]);
+            //mengubah elemen kedua menjadi angka (num2)
+            let result = 0;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                display.value = 'Error';
+                return;
+            }
+
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num2 === 0 ? 'Error' : num1 / num2;
+                    break;
+                default:
+                    result = 'Error';
+            }
+            display.value = result;
+        }
+
+        function backspace() {
+            display.value = display.value.slice(0, -1);
+        }
+    </script>
+
+</body>
+</html>
