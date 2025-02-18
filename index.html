@@ -13,17 +13,20 @@
         align-items: center;
         height: 100vh;
         margin: 0;
-        background-image: url('wal4.jpg');
-        background-position: center; background-size: cover;
-        background-size: contain;
+        background-image: url('kal5.jpg');
+        background-size: cover;
+        background-position: center;
         }
 
         .calculator {
-        background-color: rgb(255, 254, 254);
+        background: linear-gradient(45deg, #eeea07, #e90505);    
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
         }
+
+
 
         #display {
         width: 95%;
@@ -44,7 +47,7 @@
         .btn {
         padding: 20px;
         font-size: 18px;
-        background-color: #f3f0f0;
+        background-color: #ffffff;
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -80,48 +83,91 @@
 
 </head>
 <body>
-    <div class="calculator">
-        <input type="text" id="display" disabled>
-        <div class="buttons">
-            <button class="btn" onclick="appendNumber('7')">7</button>
-            <button class="btn" onclick="appendNumber('8')">8</button>
-            <button class="btn" onclick="appendNumber('9')">9</button>
-            <button class="btn operator" onclick="appendOperator('+')">+</button>
-        
-            <button class="btn" onclick="appendNumber('4')">4</button>
-            <button class="btn" onclick="appendNumber('5')">5</button>
-            <button class="btn" onclick="appendNumber('6')">6</button>
-            <button class="btn operator" onclick="appendOperator('-')">-</button>
-        
-            <button class="btn" onclick="appendNumber('1')">1</button>
-            <button class="btn" onclick="appendNumber('2')">2</button>
-            <button class="btn" onclick="appendNumber('3')">3</button>
-            <button class="btn operator" onclick="appendOperator('*')">*</button>
-        
-            <button class="btn" onclick="appendNumber('0')">0</button>
-            <button class="btn" onclick="clearDisplay()">C</button>
-            <button class="btn" onclick="calculateResult()">=</button>
-            <button class="btn operator" onclick="appendOperator('/')">/</button>
-        
-            <button class="btn" onclick="backspace()">⌫</button>
-        </div>        
-    </div>
+    <body>
+        <div class="calculator-container">
+            <h1 class="calculator-title">💡 Kalkulator Sederhana Firdaus 🔢</h1>
+    
+            <div class="calculator">
+                <input type="text" id="display" disabled>
+                <div class="buttons">
+                    <button class="btn" onclick="appendNumber('7')">7</button>
+                    <button class="btn" onclick="appendNumber('8')">8</button>
+                    <button class="btn" onclick="appendNumber('9')">9</button>
+                    <button class="btn operator" onclick="appendOperator('+')">+</button>
+    
+                    <button class="btn" onclick="appendNumber('4')">4</button>
+                    <button class="btn" onclick="appendNumber('5')">5</button>
+                    <button class="btn" onclick="appendNumber('6')">6</button>
+                    <button class="btn operator" onclick="appendOperator('-')">-</button>
+    
+                    <button class="btn" onclick="appendNumber('1')">1</button>
+                    <button class="btn" onclick="appendNumber('2')">2</button>
+                    <button class="btn" onclick="appendNumber('3')">3</button>
+                    <button class="btn operator" onclick="appendOperator('*')">*</button>
+    
+                    <button class="btn" onclick="appendNumber('0')">0</button>
+                    <button class="btn" onclick="clearDisplay()">C</button>
+                    <button class="btn" onclick="calculateResult()">=</button>
+                    <button class="btn operator" onclick="appendOperator('/')">/</button>
+    
+                    <button class="btn" onclick="backspace()">⌫</button>
+                </div>
+            </div>
+        </div>
+    
+        <style>
+            .calculator-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+    
+            .calculator-title {
+                font-size: 28px;
+                color: white;
+                background: linear-gradient(45deg, #eeea07, #e90505);
+                padding: 10px 20px;
+                border-radius: 10px;
+                box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                margin-bottom: 15px;
+            }
+    
+            .calculator {
+                background-color: rgba(241, 241, 241, 0.5);
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(10px);
+            }
+        </style>
+    </body>
+    
 
     <script>
         let display = document.getElementById('display');
         
 
-        function appendNumber(number) {
+        function appendNumber(number)
+        //Fungsi ini akan menambahkan angka yang diberikan ke dalam display
+        {
             display.value += number;
         }
+        // untuk menambahkan angka yang diberikan ke nilai yang sudah ada.
 
-        function appendOperator(operator) {
+        function appendOperator(operator)
+        //Fungsi ini digunakan untuk menambahkan operator 
+        {
             display.value += ' ' + operator + ' ';
         }
+        //Sama seperti fungsi sebelumnya, ini akan menambahkan operator ke dalam display, tetapi dengan spasi di sekitar operator
 
-        function clearDisplay() {
+        function clearDisplay()
+        //Fungsi ini digunakan untuk menghapus semua nilai yang ada di dalam elemen
+        {
             display.value = '';
         }
+        //Ini akan mengosongkan nilai di dalam display
 
         function calculateResult() {
             let input = display.value.split(' ');
